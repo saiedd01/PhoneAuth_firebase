@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
+import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -149,5 +151,9 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+  void sendphoneNumber(){
+    final pre = Provider.of<AuthProvider>(context , listen:  false);
+    String phoneNumber = phoneController.text.trim();
   }
 }
