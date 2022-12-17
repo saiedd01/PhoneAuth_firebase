@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:country_picker/country_picker.dart';
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);
@@ -7,6 +8,18 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController phoneController = TextEditingController();
 
+    Country selectCountry = Country(
+        phoneCode: "+20",
+        countryCode: "EG",
+        e164Sc: 0,
+        geographic: true,
+        level: 1,
+        name: "Egypt",
+        example: "Egypt",
+        displayName: "Egypt",
+        displayNameNoCountryCode: "EG",
+        e164Key: "",
+    );
 
     return Scaffold(
       body: SafeArea(
@@ -60,8 +73,21 @@ class Register extends StatelessWidget {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(color: Colors.black12),
-                        )
-                        
+                        ),
+                        prefixIcon:Container(
+                          padding: EdgeInsets.all(8),
+                          child: InkWell(
+                            onTap: (){},
+                            child: Text(
+                              "${selectCountry.flagEmoji} ${selectCountry.phoneCode}",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                    )
                     ),
                   )
                 ]
