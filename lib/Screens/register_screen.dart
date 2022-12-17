@@ -83,7 +83,7 @@ class _RegisterState extends State<Register> {
                       hintText: "Enter phone number",
                       hintStyle: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 15,
+                        fontSize: 18,
                         color: Colors.grey.shade200
                       ),
                       enabledBorder: OutlineInputBorder(
