@@ -5,6 +5,9 @@ class Register extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController phoneController = TextEditingController();
+
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -46,6 +49,7 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    controller: phoneController,
                     cursorColor: Colors.purple,
                     decoration: InputDecoration(
                       hintText: "Enter phone number",
@@ -57,6 +61,7 @@ class Register extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(color: Colors.black12),
                         )
+                        
                     ),
                   )
                 ]
