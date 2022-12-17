@@ -42,6 +42,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 SizedBox(height: 20),
+
               ]
             ),
           ),
