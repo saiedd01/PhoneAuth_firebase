@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Screens/register_screen.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -49,7 +50,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: double.infinity,
                   height: 50,
                   child: CustomButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context)=> Register(),
+                          ),
+                      );
+                    },
                     text: "Get started",
                   ),
                 )
