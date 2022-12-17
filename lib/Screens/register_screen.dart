@@ -11,8 +11,6 @@ class Register extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 25 , horizontal: 35),
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children:[
                   Container(
                     width: 200,
@@ -28,6 +26,39 @@ class Register extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
 
+                  Text(
+                    "Register",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+                  Text(
+                    "Add your phone number. we'll send you a verification code",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black38,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    cursorColor: Colors.purple,
+                    decoration: InputDecoration(
+                      hintText: "Enter phone number",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.black12),
+                      ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.black12),
+                        )
+                    ),
+                  )
                 ]
             ),
           ),
