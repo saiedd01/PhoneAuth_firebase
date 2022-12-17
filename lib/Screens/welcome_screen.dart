@@ -21,7 +21,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     "assets/image1.png",
                   height: 300,
                 ),
+
                 SizedBox(height: 20,),
+
+                Text(
+                    "Let's get started",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                SizedBox(height: 10),
+                Text(
+                  "Never better time than now to start.",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 20),
               ]
             ),
           ),
