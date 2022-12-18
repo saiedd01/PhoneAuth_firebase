@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  String? OtpCode;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +73,37 @@ class _OtpScreenState extends State<OtpScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-
+                        onSubmitted: (value){
+                          setState(() {
+                            OtpCode = value;
+                          });
+                        },
+                      ),
+                      SizedBox(height:20),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: CustomButton(
+                          text: 'Verify',
+                          onPressed: () {},
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      Text("Didn't receive any code? ",
+                        style: TextStyle(
+                          fontSize:14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black38,
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Text(
+                        "Resend New Code",
+                        style: TextStyle(
+                          fontSize:16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purple,
+                        ),
                       ),
                     ]
                 ),
