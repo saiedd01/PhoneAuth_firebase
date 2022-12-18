@@ -141,7 +141,7 @@ class _RegisterState extends State<Register> {
                     width: double.infinity,
                     height: 50,
                     child: CustomButton(
-                      onPressed: (){},
+                      onPressed: () => sendphoneNumber(),
                       text: "Log in",
                     ),
                   ),
@@ -155,5 +155,6 @@ class _RegisterState extends State<Register> {
   void sendphoneNumber(){
     final pre = Provider.of<AuthProvider>(context , listen:  false);
     String phoneNumber = phoneController.text.trim();
+    pre.SignInWithPhone(context, "+${selectCountry.phoneCode}$phoneNumber");
   }
 }
