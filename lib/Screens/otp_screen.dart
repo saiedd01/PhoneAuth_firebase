@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Utils/utils.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:pinput/pinput.dart';
 
@@ -85,7 +86,14 @@ class _OtpScreenState extends State<OtpScreen> {
                         height: 50,
                         child: CustomButton(
                           text: 'Verify',
-                          onPressed: () {},
+                          onPressed: () {
+                            if(OtpCode != null){
+                              verifyOtp(context, OtpCode!);
+                            }
+                            else{
+                              ShowSnackBar(context, "Enter 6-Digit code");
+                            }
+                          },
                         ),
                       ),
                       SizedBox(height: 20,),
@@ -111,5 +119,8 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
         ),
     );
+  }
+  void verifyOtp(BuildContext context, String userOtp){
+
   }
 }
