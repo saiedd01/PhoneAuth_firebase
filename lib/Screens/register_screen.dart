@@ -15,7 +15,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController phoneController = TextEditingController();
 
   Country selectCountry = Country(
-    phoneCode: "+20",
+    phoneCode: "20",
     countryCode: "EG",
     e164Sc: 0,
     geographic: true,
@@ -84,7 +84,7 @@ class _RegisterState extends State<Register> {
                     decoration: InputDecoration(
                       hintText: "Enter phone number",
                       hintStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Colors.grey.shade200
                       ),
@@ -110,9 +110,9 @@ class _RegisterState extends State<Register> {
                               });
                             },
                             child: Text(
-                              "${selectCountry.flagEmoji} ${selectCountry.phoneCode}",
+                              "${selectCountry.flagEmoji} + ${selectCountry.phoneCode}",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -141,9 +141,8 @@ class _RegisterState extends State<Register> {
                     width: double.infinity,
                     height: 50,
                     child: CustomButton(
-                      onPressed: () => sendphoneNumber(),
                       text: "Log in",
-                    ),
+                      onPressed: () => sendPhoneNumber(),),
                   ),
                 ]
             ),
@@ -152,7 +151,7 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-  void sendphoneNumber(){
+  void sendPhoneNumber(){
     final pre = Provider.of<AuthProvider>(context , listen:  false);
     String phoneNumber = phoneController.text.trim();
     pre.SignInWithPhone(context, "+${selectCountry.phoneCode}$phoneNumber");

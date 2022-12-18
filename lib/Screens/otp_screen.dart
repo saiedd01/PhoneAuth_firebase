@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {
   final String verificationId;
@@ -15,7 +16,7 @@ class _OtpScreenState extends State<OtpScreen> {
         body: SafeArea(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 25 , horizontal: 30),
+                padding: EdgeInsets.symmetric(vertical: 25 , horizontal: 10),
                 child: Column(
                     children:[
                       Align(
@@ -34,12 +35,12 @@ class _OtpScreenState extends State<OtpScreen> {
                           color: Colors.purple.shade50,
                         ),
                         child: Image.asset(
-                          "assets/image2.png",
+                          "assets/image3.png",
                         ),
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "Register",
+                        "Verification",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -47,7 +48,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "Add your phone number. we'll send you a verification code",
+                        "Enter the OTP send to your phone number ",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
