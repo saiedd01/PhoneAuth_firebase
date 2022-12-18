@@ -56,6 +56,23 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                       SizedBox(height: 20),
+                      Pinput(
+                        length: 6,
+                        showCursor: true,
+                        defaultPinTheme: PinTheme(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.purple.shade300)
+                          ),
+                          textStyle: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+
+                      ),
                     ]
                 ),
               ),
