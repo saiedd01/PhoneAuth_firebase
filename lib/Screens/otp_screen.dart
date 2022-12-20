@@ -1,11 +1,11 @@
-import 'dart:html';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Utils/utils.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:phoneauth/Screens/user_info.dart';
 
 class OtpScreen extends StatefulWidget {
   final String verificationId;
@@ -85,10 +85,11 @@ class _OtpScreenState extends State<OtpScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        onSubmitted: (value){
+                        onCompleted: (value){
                           setState(() {
                             OtpCode = value;
                           });
+                          print(OtpCode);
                         },
                       ),
                       SizedBox(height:20),
@@ -144,8 +145,13 @@ class _OtpScreenState extends State<OtpScreen> {
             }
             else{
               // new user
+
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                  builder: (context)=> const UserInformation()),
+                      (route) => false);
             }
-          });
+          },
+          );
     },
     );
   }
