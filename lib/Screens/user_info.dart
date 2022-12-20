@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Widgets/coustom_button.dart';
 
 
 class UserInformation extends StatefulWidget {
@@ -9,6 +12,7 @@ class UserInformation extends StatefulWidget {
 }
 
 class _UserInfoState extends State<UserInformation> {
+  File? image;
   final nameController =  TextEditingController();
   final emailController =  TextEditingController();
   final bioController =  TextEditingController();
@@ -32,7 +36,7 @@ class _UserInfoState extends State<UserInformation> {
               children: [
                 InkWell(
                   onTap: (){},
-                  child: Image == null ?
+                  child: image == null ?
                   const CircleAvatar(
                     backgroundColor: Colors.purple,
                     radius: 50,
@@ -77,6 +81,15 @@ class _UserInfoState extends State<UserInformation> {
                           maxLines: 3,
                           controller: bioController,
                         ),
+                        SizedBox(height: 20),
+                        SizedBox(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width * 0.90,
+                          child: CustomButton(
+                            text: "Continue",
+                            onPressed: () {},
+                          ),
+                        )
                       ]
                   ),
                 ),
@@ -98,6 +111,36 @@ Widget textFeld({
 }) {
   return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-  child: TextFormField(),
+    child: TextFormField(
+        cursorColor: Colors.purple,
+        controller: controller,
+        keyboardType: inputType,
+        maxLines: maxLines,
+        decoration: InputDecoration(
+          prefixIcon: Container(
+            margin: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.purple,
+            ),
+            child: Icon(
+              icon,
+              size: 20,
+              color: Colors.white,
+            ),
+          ),
+          enabledBorder:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Colors.transparent,
+            ),
+          ),
+          hintText: hintText,
+          alignLabelWithHint: true,
+          border: InputBorder.none,
+          fillColor: Colors.purple.shade50,
+          filled: true,
+        ),
+    ),
   );
 }
