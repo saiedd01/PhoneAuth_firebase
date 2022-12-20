@@ -53,7 +53,33 @@ class _UserInfoState extends State<UserInformation> {
                   margin: const EdgeInsets.only(top: 20),
                   child: Column(
                       children: [
-                )
+                        // name
+                        textFeld(
+                          hintText: "Saied Ahmed",
+                          icon: Icons.account_circle,
+                          inputType: TextInputType.name,
+                          maxLines: 1,
+                          controller: nameController,
+                        ),
+                        // email
+                        textFeld(
+                          hintText: "Abc@ex.com",
+                          icon: Icons.email,
+                          inputType: TextInputType.emailAddress,
+                          maxLines: 1,
+                          controller: emailController,
+                        ),
+                        // bio
+                        textFeld(
+                          hintText: "enter your bio",
+                          icon: Icons.edit,
+                          inputType: TextInputType.name,
+                          maxLines: 3,
+                          controller: bioController,
+                        ),
+                      ]
+                  ),
+                ),
               ],
             ),
           ),
@@ -61,4 +87,17 @@ class _UserInfoState extends State<UserInformation> {
       ),
     );
   }
+}
+
+Widget textFeld({
+  required String hintText,
+  required IconData icon,
+  required TextInputType inputType,
+  required int maxLines,
+  required TextEditingController controller,
+}) {
+  return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+  child: TextFormField(),
+  );
 }
