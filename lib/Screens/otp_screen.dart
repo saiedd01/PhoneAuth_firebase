@@ -1,7 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Utils/utils.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 
 class OtpScreen extends StatefulWidget {
   final String verificationId;
@@ -15,9 +19,16 @@ class _OtpScreenState extends State<OtpScreen> {
   String? OtpCode;
   @override
   Widget build(BuildContext context) {
+    final isLoading = Provider.of<AuthProvider>(context , listen: true).isLoading;
     return Scaffold(
         body: SafeArea(
-            child: Center(
+            child: isLoading== true
+                ? const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.purple,
+                ),
+            ):
+            Center(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 25 , horizontal: 10),
                 child: Column(
@@ -121,6 +132,21 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
   void verifyOtp(BuildContext context, String userOtp){
-
+    final pre = Provider.of<AuthProvider>(context , listen: false);
+    pre.verifyOtp(
+        context: context,
+        verificationId: widget.verificationId,
+        userOtp: userOtp,
+        onSuccess: (){
+          pre.checkExitingUser().then((value) async{
+            if (value == true){
+              // user exits in app
+            }
+            else{
+              // new user
+            }
+          });
+    },
+    );
   }
 }

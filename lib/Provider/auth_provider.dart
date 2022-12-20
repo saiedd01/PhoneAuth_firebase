@@ -20,6 +20,7 @@ class AuthProvider extends ChangeNotifier{
   String get uid => _uid!;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   AuthProvider(){
     CheckSignIn();
@@ -76,6 +77,19 @@ class AuthProvider extends ChangeNotifier{
       ShowSnackBar(context,e.message.toString());
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<bool> checkExitingUser() async{
+    DocumentSnapshot snapshot =
+    await _firebaseFirestore.collection("user").doc(_uid).get();
+    if(snapshot.exists){
+      print("USER EXITS");
+      return true;
+    }
+    else{
+      print("NEW USER");
+      return false;
     }
   }
 }
