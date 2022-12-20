@@ -14,6 +14,10 @@ class AuthProvider extends ChangeNotifier{
 
   bool _isSignedIn = false;
   bool get isSignedIn => _isSignedIn;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  String? _uid;
+  String get uid => _uid!;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -26,7 +30,7 @@ class AuthProvider extends ChangeNotifier{
     _isSignedIn = s.getBool("is_signedin") ?? false;
     notifyListeners();
   }
-
+  // signIn
   void SignInWithPhone(BuildContext context, String phoneNumber) async {
     try{
       await _firebaseAuth.verifyPhoneNumber(
@@ -46,6 +50,32 @@ class AuthProvider extends ChangeNotifier{
     } on FirebaseAuthException
     catch(e){
       ShowSnackBar(context,e.message.toString());
+    }
+  }
+
+  // verify OTP
+  void verifyOtp({
+    required BuildContext context,
+    required String verificationId,
+    required String userOtp,
+    required Function onSuccess,
+  }) async{
+    _isLoading = true;
+    notifyListeners();
+    try{
+      PhoneAuthCredential Creds = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: userOtp);
+      User? user = (await _firebaseAuth.signInWithCredential(Creds)).user!;
+
+      if(user != null){
+        _uid = user.uid;
+        onSuccess();
+      }
+      _isLoading = false;
+      notifyListeners();
+    } on FirebaseAuthException catch(e){
+      ShowSnackBar(context,e.message.toString());
+      _isLoading = false;
+      notifyListeners();
     }
   }
 }
