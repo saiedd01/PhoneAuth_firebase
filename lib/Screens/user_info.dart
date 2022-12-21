@@ -45,7 +45,7 @@ class _UserInfoState extends State<UserInformation> {
             child: Column(
               children: [
                 InkWell(
-                  onTap: (){},
+                  onTap: ()=> selectImage(),
                   child: image == null ?
                   const CircleAvatar(
                     backgroundColor: Colors.purple,

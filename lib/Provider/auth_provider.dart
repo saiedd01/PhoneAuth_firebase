@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:phoneauth/Model/user_model.dart';
 import 'package:phoneauth/Screens/otp_screen.dart';
 import 'package:phoneauth/Utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -80,6 +81,7 @@ class AuthProvider extends ChangeNotifier{
     }
   }
 
+  //DataBase Opertaion
   Future<bool> checkExitingUser() async{
     DocumentSnapshot snapshot =
     await _firebaseFirestore.collection("user").doc(_uid).get();
@@ -90,6 +92,22 @@ class AuthProvider extends ChangeNotifier{
     else{
       print("NEW USER");
       return false;
+    }
+  }
+
+  // save data
+  void saveUserDataToFirebase({
+    required BuildContext context,
+    required UserModel userModel,
+    required File profliePic,
+    required Function onSuccess,
+  }) async{
+    _isLoading = true;
+    notifyListeners();
+    try{} on FirebaseAuthException catch(e){
+      ShowSnackBar(context, e.message.toString());
+      _isLoading = false;
+      notifyListeners();
     }
   }
 }
