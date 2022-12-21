@@ -29,4 +29,17 @@ class UserModel{
       profilePic: map['profilePic'] ?? '',
     );
   }
+
+  //to map
+  Map<String, dynamic> toMap() {
+    return {
+      "name": name,
+      "email": email,
+      "uid": uid,
+      "bio": bio,
+      "profilePic": profilePic,
+      "phoneNumber": phoneNumber,
+      "createdAt": createdAt,
+    };
+  }
 }

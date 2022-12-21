@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Model/user_model.dart';
 import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:provider/provider.dart';
@@ -150,6 +151,15 @@ class _UserInfoState extends State<UserInformation> {
 
   void storeData() async {
     final pre = Provider.of<AuthProvider>(context, listen: false);
+    UserModel userModel = UserModel(
+      name: nameController.text.trim(),
+      email: emailController.text.trim(),
+      bio: bioController.text.trim(),
+      profilePic: "",
+      createdAt: "",
+      phoneNumber: "",
+      uid: "",
+    );
 
   }
 
