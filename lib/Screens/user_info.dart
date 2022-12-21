@@ -6,7 +6,7 @@ import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:provider/provider.dart';
 import 'package:phoneauth/Utils/utils.dart';
-
+import 'package:image_picker/image_picker.dart';
 
 class UserInformation extends StatefulWidget {
   const UserInformation({Key? key}) : super(key: key);
@@ -29,6 +29,12 @@ class _UserInfoState extends State<UserInformation> {
     bioController.dispose();
 
   }
+  // for selecting image
+  void selectImage() async {
+    image = await pickImage(context);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

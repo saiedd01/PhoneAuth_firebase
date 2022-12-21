@@ -12,7 +12,7 @@ void ShowSnackBar(BuildContext context, String content){
   );
 }
 
-Future<File?> PickImage(BuildContext context) async{
+Future<File?> pickImage(BuildContext context) async{
   File? image;
   try{
     final pickedImage =
@@ -23,4 +23,5 @@ Future<File?> PickImage(BuildContext context) async{
   } catch(e){
     ShowSnackBar(context, e.toString());
   }
+  return image;
 }
