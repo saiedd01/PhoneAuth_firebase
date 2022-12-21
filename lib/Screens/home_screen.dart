@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phoneauth/Provider/auth_provider.dart';
+import 'package:phoneauth/Screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -20,6 +21,12 @@ class _HomeState extends State<Home> {
       actions: [
         IconButton(
           onPressed: () async {
+            ap.userSignOut().then((value) =>
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=> WelcomeScreen(),
+                    ),
+                ),
+            );
           },
           icon: const Icon(Icons.exit_to_app),
         ),
