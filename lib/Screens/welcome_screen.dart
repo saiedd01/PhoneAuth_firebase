@@ -54,18 +54,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: double.infinity,
                   height: 50,
                   child: CustomButton(
-                    onPressed: (){
-                      pre.isSignedIn == true ? Navigator.push(
+                    onPressed: () {
+                      if (pre.isSignedIn == true) {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Home(),
-                          ),)
-                      : Navigator.push(
+                          ),);
+                      }
+                      else {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                          builder: (context)=> Register(),
+                            builder: (context) => Register(),
                           ),
-                      );
+                        );
+                      }
                     },
                     text: "Get started",
                   ),
