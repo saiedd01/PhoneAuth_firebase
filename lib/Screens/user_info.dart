@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
+import 'package:provider/provider.dart';
 
 
 class UserInformation extends StatefulWidget {
@@ -89,7 +91,7 @@ class _UserInfoState extends State<UserInformation> {
                             text: "Continue",
                             onPressed: () {},
                           ),
-                        )
+                        ),
                       ]
                   ),
                 ),
@@ -100,18 +102,17 @@ class _UserInfoState extends State<UserInformation> {
       ),
     );
   }
-}
-
-Widget textFeld({
-  required String hintText,
-  required IconData icon,
-  required TextInputType inputType,
-  required int maxLines,
-  required TextEditingController controller,
-}) {
-  return Padding(
+  // textField
+  Widget textFeld({
+    required String hintText,
+    required IconData icon,
+    required TextInputType inputType,
+    required int maxLines,
+    required TextEditingController controller,
+  }) {
+    return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-    child: TextFormField(
+      child: TextFormField(
         cursorColor: Colors.purple,
         controller: controller,
         keyboardType: inputType,
@@ -141,6 +142,17 @@ Widget textFeld({
           fillColor: Colors.purple.shade50,
           filled: true,
         ),
-    ),
-  );
+      ),
+    );
+  }
+
+  //store data
+
+  void storeData() async {
+    final pre = Provider.of<AuthProvider>(context, listen: false);
+
+  }
+
 }
+
+
