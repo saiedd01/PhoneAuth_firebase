@@ -149,6 +149,22 @@ class AuthProvider extends ChangeNotifier{
     await s.setString("user_model", jsonEncode(userModel.toMap()));
   }
 
+  Future getDataFromFirestore() async{
+    await _firebaseFirestore.collection("users").doc(
+        _firebaseAuth.currentUser!.uid).get().then
+      ((DocumentSnapshot snapshot){
+        _userModel = UserModel(
+          name: snapshot['name'],
+          email: snapshot['email'],
+          createdAt: snapshot['createdAt'],
+          bio: snapshot['bio'],
+          uid: snapshot['uid'],
+          profilePic: snapshot['profilePic'],
+          phoneNumber: snapshot['phoneNumber'],
+        );
+        _uid = userModel.uid;
+    });
+  }
   // get data
   Future getDataFromSP() async{
     SharedPreferences s = await SharedPreferences.getInstance();
