@@ -25,7 +25,22 @@ class _HomeState extends State<Home> {
       ],
     ),
       body: Center(
-        child: Text("Home"),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.purple,
+                backgroundImage: NetworkImage(ap.userModel.profilePic),
+                radius: 50,
+              ),
+              SizedBox(height: 20,),
+              Text(ap.userModel.name),
+              Text(ap.userModel.phoneNumber),
+              Text(ap.userModel.bio),
+              Text(ap.userModel.email),
+            ]
+        ),
       ),
     );
   }
