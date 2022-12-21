@@ -19,9 +19,12 @@ class AuthProvider extends ChangeNotifier{
   bool get isLoading => _isLoading;
   String? _uid;
   String get uid => _uid!;
+  UserModel? _userModel;
+  UserModel get userModel => _userModel!;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
   AuthProvider(){
     CheckSignIn();
@@ -99,15 +102,37 @@ class AuthProvider extends ChangeNotifier{
   void saveUserDataToFirebase({
     required BuildContext context,
     required UserModel userModel,
-    required File profliePic,
+    required File profilePic,
     required Function onSuccess,
   }) async{
     _isLoading = true;
     notifyListeners();
-    try{} on FirebaseAuthException catch(e){
+    try{
+      // Upload image
+      await storeFileToStorage("profilePic/$_uid", profilePic).then((value){
+        userModel.profilePic = value;
+        userModel.createdAt = DateTime.now().microsecondsSinceEpoch.toString();
+        userModel.phoneNumber = _firebaseAuth.currentUser!.phoneNumber!;
+        userModel.uid = _firebaseAuth.currentUser!.phoneNumber!;
+      });
+      _userModel = userModel;
+
+      await _firebaseFirestore.collection("users").doc(_uid).set(userModel.toMap()).then((value) {
+        onSuccess();
+        _isLoading = false;
+        notifyListeners();
+      });
+    } on FirebaseAuthException catch(e){
       ShowSnackBar(context, e.message.toString());
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  Future<String> storeFileToStorage(String ref, File file) async{
+    UploadTask uploadTask = _firebaseStorage.ref().child(ref).putFile(file);
+    TaskSnapshot snapshot = await uploadTask;
+    String downloadUrl = await snapshot.ref.getDownloadURL();
+    return downloadUrl;
   }
 }

@@ -155,7 +155,6 @@ class _UserInfoState extends State<UserInformation> {
   }
 
   //store data
-
   void storeData() async {
     final pre = Provider.of<AuthProvider>(context, listen: false);
     UserModel userModel = UserModel(
@@ -168,8 +167,13 @@ class _UserInfoState extends State<UserInformation> {
       uid: "",
     );
     if(image != null){
-
-    }else{
+      pre.saveUserDataToFirebase(context: context,
+          userModel: userModel,
+          profilePic: image!,
+          onSuccess:(){}
+      );
+    }
+    else{
       ShowSnackBar(context, "Please upload your profile photo");
     }
   }
