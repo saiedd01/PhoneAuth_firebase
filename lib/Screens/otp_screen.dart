@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:phoneauth/Provider/auth_provider.dart';
+import 'package:phoneauth/Screens/home_screen.dart';
 import 'package:phoneauth/Utils/utils.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:pinput/pinput.dart';
@@ -142,10 +143,15 @@ class _OtpScreenState extends State<OtpScreen> {
           pre.checkExitingUser().then((value) async{
             if (value == true){
               // user exits in app
+              pre.getDataFromFirestore().then((value) =>
+                  pre.saveUserDataToSp().then((value) =>
+                      pre.setSignIn().then((value) =>
+                      Navigator.pushAndRemoveUntil(context,
+                          MaterialPageRoute(builder: (context) => Home(),),
+                              (route) => false),),),);
             }
             else{
               // new user
-
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                   builder: (context)=> const UserInformation()),
                       (route) => false);
