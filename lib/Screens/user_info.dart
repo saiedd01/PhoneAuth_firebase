@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:phoneauth/Model/user_model.dart';
 import 'package:phoneauth/Provider/auth_provider.dart';
+import 'package:phoneauth/Screens/home_screen.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:provider/provider.dart';
 import 'package:phoneauth/Utils/utils.dart';
@@ -176,9 +177,15 @@ class _UserInfoState extends State<UserInformation> {
       pre.saveUserDataToFirebase(context: context,
           userModel: userModel,
           profilePic: image!,
-          onSuccess:(){
-
-          }
+          onSuccess:()
+          {
+            pre.saveUserDataToSp().then((value) =>
+            pre.setSignIn().then((value) =>
+                Navigator.pushAndRemoveUntil(context,
+                    MaterialPageRoute(builder: (context) => Home(),),
+                        (route) => false),),
+            );
+          },
       );
     }
     else{
