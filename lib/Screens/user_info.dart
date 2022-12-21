@@ -5,6 +5,7 @@ import 'package:phoneauth/Model/user_model.dart';
 import 'package:phoneauth/Provider/auth_provider.dart';
 import 'package:phoneauth/Widgets/coustom_button.dart';
 import 'package:provider/provider.dart';
+import 'package:phoneauth/Utils/utils.dart';
 
 
 class UserInformation extends StatefulWidget {
@@ -90,7 +91,7 @@ class _UserInfoState extends State<UserInformation> {
                           width: MediaQuery.of(context).size.width * 0.90,
                           child: CustomButton(
                             text: "Continue",
-                            onPressed: () {},
+                            onPressed: () => storeData(),
                           ),
                         ),
                       ]
@@ -160,7 +161,11 @@ class _UserInfoState extends State<UserInformation> {
       phoneNumber: "",
       uid: "",
     );
+    if(image != null){
 
+    }else{
+      ShowSnackBar(context, "Please upload your profile photo");
+    }
   }
 
 }
