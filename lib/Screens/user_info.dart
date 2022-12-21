@@ -37,9 +37,15 @@ class _UserInfoState extends State<UserInformation> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = Provider.of<AuthProvider>(context , listen: true).isLoading;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: isLoading== true
+            ? const Center(child: CircularProgressIndicator(
+            color: Colors.purple,
+          ),
+        ):
+        SingleChildScrollView(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
           child: Center(
             child: Column(
@@ -170,7 +176,9 @@ class _UserInfoState extends State<UserInformation> {
       pre.saveUserDataToFirebase(context: context,
           userModel: userModel,
           profilePic: image!,
-          onSuccess:(){}
+          onSuccess:(){
+
+          }
       );
     }
     else{

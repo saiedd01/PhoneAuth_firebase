@@ -135,4 +135,10 @@ class AuthProvider extends ChangeNotifier{
     String downloadUrl = await snapshot.ref.getDownloadURL();
     return downloadUrl;
   }
+
+  // Storing Data Locally
+  Future saveUserDataToSp() async{
+    SharedPreferences s = await SharedPreferences.getInstance();
+    await s.setString("user_model", jsonEncode(userModel.toMap()));
+  }
 }
