@@ -19,7 +19,8 @@ class _HomeState extends State<Home> {
       title: const Text("FlutterPhone Auth"),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () async {
+          },
           icon: const Icon(Icons.exit_to_app),
         ),
       ],
@@ -32,12 +33,15 @@ class _HomeState extends State<Home> {
               CircleAvatar(
                 backgroundColor: Colors.purple,
                 backgroundImage: NetworkImage(ap.userModel.profilePic),
-                radius: 50,
+                radius: 100,
               ),
               SizedBox(height: 20,),
               Text(ap.userModel.name),
+              SizedBox(height: 8,),
               Text(ap.userModel.phoneNumber),
+              SizedBox(height: 8,),
               Text(ap.userModel.bio),
+              SizedBox(height: 8,),
               Text(ap.userModel.email),
             ]
         ),

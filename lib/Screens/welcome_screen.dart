@@ -54,16 +54,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: double.infinity,
                   height: 50,
                   child: CustomButton(
-                    onPressed: () {
-                      if (pre.isSignedIn == true) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),);
+                    onPressed: () async{
+                      if (pre.isSignedIn == true){
+                        await pre.getDataFromSP().whenComplete(() => Navigator.pushReplacement(
+                          context, MaterialPageRoute(
+                          builder: (context) => Home(),
+                        ),
+                        ),
+                        );
                       }
                       else {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Register(),

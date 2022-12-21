@@ -157,4 +157,13 @@ class AuthProvider extends ChangeNotifier{
     _uid= _userModel!.uid;
     notifyListeners();
   }
+
+  //SignOut
+  Future userSignOut() async{
+    SharedPreferences s = await SharedPreferences.getInstance();
+    await _firebaseAuth.signOut();
+    _isSignedIn = false;
+    notifyListeners();
+    s.clear();
+  }
 }
